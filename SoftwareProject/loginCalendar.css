@@ -1,0 +1,20 @@
+body {
+	height: 100vh;
+    background: url(background2.jpg) no-repeat center;
+    background-size: cover;
+}
+.newUser {
+	color: #6c757d;
+	text-decoration: underline;
+}
+.newUser:hover {
+	color: #6c757d;
+	text-decoration: none;
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;
+}
+.back {
+	background-color: #d6d6d6d1;
+}
