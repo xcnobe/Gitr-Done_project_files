@@ -17,13 +17,13 @@ function getPassword(email) {
         }
     })
     
-    const sql = util.format('SELECT password AS "em" FROM users WHERE email = %s', email);
+    const sql = util.format('SELECT password AS "pw" FROM users WHERE email = %s', email);
     client.query(sql, (err, res))=> {
         if (err) throw err
         console.log(res)
         client.end()
     })
-    return res.rows[0].em;
+    return res.rows[0].pw;
 }
 
 function createUser(first, last, email, password) {
