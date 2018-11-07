@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href='loginCalendar.css' rel='stylesheet' />
+    <link rel='icon' href='photos/favicon.ico' type='image/x-icon'/ >
+
+    <title>Git'r Done Calendar</title>
+  </head>
+  <body class="d-flex flex-column justify-content-center align-items-center eventBody"><!-- class="d-flex flex-column justify-content-center align-items-center col-6 container" -->
+    <div class="d-flex flex-column col-6 justify-content-around back eventForm" id="pageDiv">
+      <div class="w-100">
+        <h1 id="login">Add Event</h1>
+      </div>
+      <form class="w-100" id="form">
+        <div class="form-group" id="email">
+          <label for="EventName">Event Name</label>
+          <input type="text" class="form-control" id="EventName" placeholder="Enter event name" required>
+        </div>
+        <div class="form-group">
+          <label for="location" required>Location</label>
+          <input type="text" class="form-control" id="location" placeholder="Enter Location" required>
+        </div>
+        <div class="form-group w-50">
+          <label for="date" required>Date</label>
+          <input type="date" class="form-control" id="date" required>
+        </div>
+        <div class="d-flex">
+          <div class="form-group w-25">
+            <label for="stime" required>Start Time</label>
+            <input type="time" class="form-control" id="stime" required>
+          </div>
+          <div class="form-group w-25">
+            <label for="etime" required>End Time</label>
+            <input type="time" class="form-control" id="etime" required>
+          </div>
+        </div>
+        <div class="d-flex">
+          <button type="submit" class="btn btn-primary" id="button">Add Event</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="loginCalendar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
