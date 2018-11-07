@@ -21,6 +21,24 @@ app.post('/addEvent', function (request, response) {
 		})
 });
 
+app.post('/', function (request, response) {
+    var email = request.body.emailLog;
+    var password = request.body.pwsLog;
+    db.any('select id, email from users where email = \'' + email + '\' and pw = \'' + password + '\'')
+        .then(function (result) {
+            if (result.length > 0) {
+                response.render('eventsPage', { userEmail: email});
+            } else {
+		console.log('incorrect login information');
+                response.render('loginCalendar');
+            }
+        })
+        .catch(function (err) {
+            // display error message in case an error
+            console.log('Login error');
+        })
+});
+
 app.post('/SignUp', function (request, response) {
     var item = {
         // sanitize() is a function used to prevent Hackers from inserting
