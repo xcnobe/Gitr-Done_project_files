@@ -14,9 +14,20 @@
   </head>
   <body class="d-flex flex-column justify-content-center align-items-center eventBody">
     <div class="d-flex flex-column col-6 justify-content-around back eventForm" id="pageDiv">
-      <div class="w-100">
+      <div class="w-100 d-flex justify-content-between align-items-center">
         <h1 id="login">Add Event</h1>
+        <div class="d-flex">
+          <p>Hi, &nbsp</p>
+          <p class="mr-3"><%= name %></p>
+          <a href='/logout' class="newUser">Logout</a>
+        </div>
       </div>
+      <% if (message === 'Failed to Add Event') { %>
+        <p class="badmessage"><%- message %></p>
+      <% } %>
+      <% if (message === 'Successfully Added Event') { %>
+          <p class="goodmessage"><%- message %></p>
+      <% } %>
       <form class="w-100" id="form" method="post" action="/addEvent">
         <div class="form-group" id="email">
           <label for="EventName">Event Name</label>

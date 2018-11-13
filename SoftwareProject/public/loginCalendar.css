@@ -28,3 +28,14 @@ a:hover {
 .signUP {
 	display: none;
 }
+.error {
+	color: red;
+}
+.goodmessage {
+	color: green;
+	margin: 0;
+}
+.badmessage {
+	color: red;
+	margin: 0;
+}
