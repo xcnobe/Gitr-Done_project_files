@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href='loginCalendar.css' rel='stylesheet' />
+    <link rel='icon' href='photos/favicon.ico' type='image/x-icon'/ >
+
+    <script src="http://code.jquery.com/jquery-2.2.0.js"></script>
+    <script type="text/javascript" src="temperature.js"></script>
+
+    <title>Git'r Done Calendar</title>
+  </head>
+  <body class="d-flex flex-column justify-content-center align-items-center eventBody">
+    <div class="d-flex flex-column col-10 pt-1 pb-1 back eventForm" id="pageDiv">
+      <div class="w-100 d-flex justify-content-between align-items-center">
+        <h1 id="login">My Events</h1>
+        <div class="d-flex">
+          <p>Hi, &nbsp</p>
+          <p class="mr-3"><%= name %></p>
+          <a href='/eventPage' class="mr-3 myEvents">Add Event</a>
+          <a href='/logout' class="newUser">Logout</a>
+        </div>
+      </div>
+      <table class="table">
+          <tr style='text-align:left; background-color:#CCC'>
+              <th scope="col">Event</th>
+              <th scope="col">Location</th>
+              <th scope="col">Date</th>
+              <th scope="col">Start Time </th>
+              <th scope="col">End Time </th>
+              <th scope="col">Weather</th>
+          </tr>
+          <% if (data) { %>
+            <% var count = 0 %>
+          <!-- Using a for-loop to loop over each row in the database.
+          The 'data' variable is passed from the store.js during the response.render function call -->
+              <% data.forEach(function(item){ %>
+                  <tr>
+                      <% count = count + 1 %>
+
+                      <td><%= item.name %></td>
+
+                      <td><%= item.location %></td>
+
+                      <% var datestring = String(item.eventdate).substring(5,10) + '-' + String(item.eventdate).substring(0,4) %>
+                      <td><%= datestring %></td>
+                      <% var stringstime = String(item.starttime).substring(0,2) %>
+                      <% var stringStartNoHour = String(item.starttime).substring(2) %>
+                      <% var stime = Number(stringstime) %>
+                      <% if (stime >= 12) { %>
+                        <% if (stime === 12) { %>
+                          <% var s = String(item.starttime).substring(0,5) + ' PM' %>
+                          <td> <%= s %> </td>
+                        <% } else { %>
+                          <% stime = stime - 12 %>
+                          <% var s = stime + stringStartNoHour.substring(2,6) + ' PM' %>
+                          <td><%= s %></td>
+                        <% } %>
+                      <% } else { %>
+                        <% if (stime === 0) { %>
+                          <% stime = 12 %>
+                          <% var s = stime + stringStartNoHour.substring(0,3) + ' AM' %>
+                          <td><%= s %></td>
+                        <% } else { %> 
+                          <% var s = stime + stringStartNoHour.substring(0,3) + ' AM' %>
+                          <td><%= s %></td>
+                        <% } %>
+                      <% } %>
+                      <!-- End Time -->
+                      <% var stringetime = String(item.endtime).substring(0,2) %>
+                      <% var stringEndNoHour = String(item.endtime).substring(2) %>
+                      <% var etime = Number(stringetime) %>
+                      <% if (etime >= 12) { %>
+                        <% if (etime === 12) { %>
+                          <% var s = String(item.endtime).substring(0,5) + ' PM' %>
+                          <td> <%= s %> </td>
+                        <% } else { %>
+                          <% etime = etime - 12 %>
+                          <% var s = etime + stringEndNoHour.substring(0,3) + ' PM' %>
+                          <td><%= s %></td>
+                        <% } %>
+                      <% } else { %>
+                        <% if (etime === 0) { %>
+                          <% etime = 12 %>
+                          <% var s = etime + stringEndNoHour.substring(0,3) + ' AM' %>
+                          <td><%= s %></td>
+                        <% } else { %> 
+                          <% var s = etime + stringEndNoHour.substring(0,3) + ' AM' %>
+                          <td><%= s %></td>
+                        <% } %>
+                      <% } %>
+<!--                       <td>
+                          <div class="edit-delete" style="float:left">
+                              <a href='/store/edit/<%= item.id %>'>Edit</a> &nbsp;
+                              <form action="/store/delete/<%= item.id %>" method="post" style="float:right">
+                                  <input name="delete" onclick="return confirm('Are you sure you ' +
+                                                                           'want to delete?')" type="submit" value='Delete'>
+                                  <input name="_method" type="hidden" value="DELETE">
+                              </form>
+                          </div>
+                      </td> -->  
+                      <td><%= item.temperature %></td>
+                  </tr>
+              <% }) %>
+          <% } %>
+      </table>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

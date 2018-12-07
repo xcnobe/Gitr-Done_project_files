@@ -39,3 +39,12 @@ a:hover {
 	color: red;
 	margin: 0;
 }
+.myEvents {
+	color: #b7433a;
+	text-decoration: underline;
+}
+.myEvents:hover {
+	color: #6c757d;
+	text-decoration: none;
+	cursor: pointer;
+}
