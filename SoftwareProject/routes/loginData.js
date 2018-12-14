@@ -129,16 +129,16 @@ app.post('/addEvent', function (request, response) {
 	console.log(item.icon);
 	console.log(item.sum);
 	//Send Email
-	var transporter = nodemailer.createTransport({
-	  service: 'gmail',
-	  auth: {
-	    user: '',
-	    pass: ''
-	  }
-	});
+	// var transporter = nodemailer.createTransport({
+	//   service: 'gmail',
+	//   auth: {
+	//     user: '',
+	//     pass: ''
+	//   }
+	// });
 
 	var mailOptions = {
-	  from: '',
+	  from: 'jackmarty21@gmail.com',
 	  to: request.session.useremail,
 	  subject: 'Weather Update',
 	  text: 'The weather in ' + item.location + ' is ' + item.sum + ' with a temperature of ' + Number(item.temp).toFixed(0) + ' degrees.',
@@ -157,15 +157,15 @@ app.get('/myEvents', function(request, response) {
 	var query = 'SELECT * FROM events WHERE userid = ' + request.session.myid;
 
     db.any(query)
-      .then(function (rows) {
+      	.then(function (rows) {
           // render views/store/list.ejs template file
 
-
-          var dataToRender = [];
-		  rows.forEach(function(row) {
-		  	var geocodeUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + encodeURIComponent(row.location) + '&key=3d7f8606462b4cf0911585ab6ddea519';
-		  	https.get(geocodeUrl).then(function(gResponse) {
-		  		  	
+          	if (rows.length != 0) {
+	          	var dataToRender = [];
+			  	rows.forEach(function(row) {
+			  	var geocodeUrl = 'https://api.opencagedata.com/geocode/v1/json?q=' + encodeURIComponent(row.location) + '&key=3d7f8606462b4cf0911585ab6ddea519';
+			  	https.get(geocodeUrl).then(function(gResponse) {
+			  		  	
 		  			console.log(gResponse.data);
 		  			var geocodeResponse = gResponse.data;
 
@@ -191,10 +191,13 @@ app.get('/myEvents', function(request, response) {
 						console.log(errors);
 					});
 
-		  	}).catch(function(errors){
-		  		console.log(errors);
-		  	});
-		  });
+			  	}).catch(function(errors){
+			  		console.log(errors);
+			  	});
+			  });
+			} else {
+				response.render('eventsPage', {name: request.session.name, message: 'You do not have any events yet'});
+			}
       })
       .catch(function (err) {
           // display error message in case an error

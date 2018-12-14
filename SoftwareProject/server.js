@@ -40,7 +40,7 @@ var loginData = require('./routes/loginData');
  app.use('/', index);
 app.use('/', loginData);
 
-var port = 4000;
+var port = process.env.PORT;
 app.listen(port, function () {
     console.log('Server running on http://localhost:' + port)
 });

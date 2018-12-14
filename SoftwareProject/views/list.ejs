@@ -94,17 +94,8 @@
                           <td><%= s %></td>
                         <% } %>
                       <% } %>
-<!--                       <td>
-                          <div class="edit-delete" style="float:left">
-                              <a href='/store/edit/<%= item.id %>'>Edit</a> &nbsp;
-                              <form action="/store/delete/<%= item.id %>" method="post" style="float:right">
-                                  <input name="delete" onclick="return confirm('Are you sure you ' +
-                                                                           'want to delete?')" type="submit" value='Delete'>
-                                  <input name="_method" type="hidden" value="DELETE">
-                              </form>
-                          </div>
-                      </td> -->  
-                        <td><%= item.temperature + '\u00B0 F'%></td>
+  
+                      <td><%= item.temperature  + '\u00B0 F'%></td>
                   </tr>
               <% }) %>
           <% } %>

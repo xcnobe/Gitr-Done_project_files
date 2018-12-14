@@ -30,6 +30,9 @@
       <% if (message === 'Successfully Added Event') { %>
           <p class="goodmessage"><%- message %></p>
       <% } %>
+      <% if (message === 'You do not have any events yet') { %>
+          <p class="badmessage"><%- message %></p>
+      <% } %>
       <form class="w-100" id="form" method="post" action="/addEvent">
         <div class="form-group" id="email">
           <label for="EventName">Event Name</label>
