@@ -1,0 +1,12 @@
+List of tests we performed on our site:
+
+1. Accounts:
+-Attempt to create account with existing email
+-Attempt to create account with password field not matching confirm password field
+-Try using someone else's password to log in
+
+2. Events
+-Try to create event with invalid date
+-Try creating many events in rapid succession
+-Try to create event with invalid location
+-Login, create event, logout, login, view events
